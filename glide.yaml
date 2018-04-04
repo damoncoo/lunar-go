@@ -1,4 +1,4 @@
-package: github.com/damoncoo/go-web
+package: github.com/damoncoo/lunar-go
 import:
 - package: github.com/gin-gonic/gin
   version: ~1.2.0
