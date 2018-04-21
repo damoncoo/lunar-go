@@ -3,18 +3,19 @@ package router
 import (
 	"fmt"
 	"net/http"
-	"time"
 	"strconv"
-	"github.com/gin-gonic/gin"
+	"time"
+
 	calendar "github.com/damoncoo/lunar-go/calendar"
+	"github.com/gin-gonic/gin"
 )
 
 //Router 导出的路由
 func Router() *gin.Engine {
 
-	router := gin.Default()
+	router := gin.New()
 
-	router.GET("/lunar/:timestamp/sex/:sex",func(c *gin.Context){
+	router.GET("/lunar/:timestamp/sex/:sex", func(c *gin.Context) {
 
 		timestamp := c.Param("timestamp")
 		// nl := calendar.NewLunarNow()
@@ -25,9 +26,9 @@ func Router() *gin.Engine {
 
 		// yl := nl.Convert()
 		// fmt.Println(
-		// "现在是" +  strconv.Itoa(yl.Year()) + 
+		// "现在是" +  strconv.Itoa(yl.Year()) +
 		// "年" + strconv.Itoa(int(yl.Month())) +
-		// "月" + strconv.Itoa(yl.Day()) + 
+		// "月" + strconv.Itoa(yl.Day()) +
 		// "日" + strconv.Itoa(yl.Hour()) +
 		// "时" )
 
@@ -35,16 +36,16 @@ func Router() *gin.Engine {
 		if err != nil {
 			panic(err)
 		}
-		t := time.Unix(i,0)
+		t := time.Unix(i, 0)
 		yl := calendar.NewSolarTime(t)
-		fmt.Println(yl)		
+		fmt.Println(yl)
 
 		nl := yl.Convert()
-		fmt.Println(nl)				
+		fmt.Println(nl)
 		fmt.Println(calendar.LunarDayString(nl.Day()))
 
-		rs := map[string]string {"Hello":"World" }
-		c.JSON(http.StatusOK,rs)
+		rs := map[string]string{"Hello": "World"}
+		c.JSON(http.StatusOK, rs)
 
 	})
 	return router
