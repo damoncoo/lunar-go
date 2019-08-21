@@ -1,13 +1,16 @@
 package main
 
-import(
+import (
 	"fmt"
+
 	rt "github.com/damoncoo/lunar-go/router"
 )
 
-func main(){
-	
+func main() {
+
+	serverFileUpload()
+
 	router := rt.Router()
-	router.Run(":4000")
+	_ = router.Run(":4000")
 	fmt.Println("Server Started...")
 }
